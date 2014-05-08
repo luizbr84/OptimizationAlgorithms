@@ -27,7 +27,10 @@ public class RandomSearch
 			int currentFitness = solution.getFitness();
 			
 			if (currentFitness > bestFitness)
+			{
+				bestFitness = currentFitness;
 				bestSolution = solution.clone();
+			}
 		}
 		
 		return bestSolution;
