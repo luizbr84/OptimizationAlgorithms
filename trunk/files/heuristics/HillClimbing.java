@@ -1,6 +1,6 @@
-package Files.heuristics;
+package files.heuristics;
 
-import Files.model.Catalog;
+import files.model.Catalog;
 
 
 public class HillClimbing 

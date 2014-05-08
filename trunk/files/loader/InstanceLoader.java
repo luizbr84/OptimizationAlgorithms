@@ -1,11 +1,11 @@
-package Files.loader;
+package files.loader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import Files.model.Catalog;
-import Files.model.TestCase;
+import files.model.Catalog;
+import files.model.TestCase;
 
 public class InstanceLoader
 {

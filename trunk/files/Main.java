@@ -1,10 +1,10 @@
-package Files;
+package files;
 
-import Files.heuristics.HillClimbing;
-import Files.heuristics.RandomSearch;
-import Files.heuristics.Solution;
-import Files.loader.InstanceLoader;
-import Files.model.Catalog;
+import files.heuristics.HillClimbing;
+import files.heuristics.RandomSearch;
+import files.heuristics.Solution;
+import files.loader.InstanceLoader;
+import files.model.Catalog;
 
 public class Main
 {

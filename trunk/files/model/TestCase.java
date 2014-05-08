@@ -1,4 +1,4 @@
-package Files.model;
+package files.model;
 
 import lombok.Getter;
 import lombok.Setter;

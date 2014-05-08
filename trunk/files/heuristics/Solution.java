@@ -1,10 +1,10 @@
-package Files.heuristics;
+package files.heuristics;
 
 import java.util.Random;
 
 import lombok.Getter;
 import lombok.Setter;
-import Files.model.Catalog;
+import files.model.Catalog;
 
 public class Solution
 {

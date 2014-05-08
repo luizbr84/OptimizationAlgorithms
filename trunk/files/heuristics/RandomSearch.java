@@ -1,7 +1,7 @@
-package Files.heuristics;
+package files.heuristics;
 
-import Files.model.Catalog;
-import Files.heuristics.Solution;
+import files.model.Catalog;
+import files.heuristics.Solution;
 
 public class RandomSearch
 {
