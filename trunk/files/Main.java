@@ -8,33 +8,25 @@ import files.model.Catalog;
 
 public class Main
 {
+	private static final int BUDGET = 10000;
+	
 	public static void main(String[] args)
 	{
 		InstanceLoader loader = new InstanceLoader();
 		Catalog catalog = loader.execute("trunk\\data\\Instance.txt");
+		runForLimit(catalog, 200);
+		runForLimit(catalog, 300);
+		runForLimit(catalog, 400);
+	}
 
-		HillClimbing hc1 = new HillClimbing(catalog, 200);
-		Solution hcSolution1 = hc1.run(2000);
-		System.out.println(hcSolution1.getLimits() + ":"+ hcSolution1.getFitness());
+	private static void runForLimit(Catalog catalog, int limits)
+	{
+		HillClimbing hc1 = new HillClimbing(catalog, limits);
+		Solution hcSolution1 = hc1.run(BUDGET);
 		
-		RandomSearch rs1 = new RandomSearch(catalog, 200);
-		Solution rsSolution1 = rs1.run(2000);
-		System.out.println(rsSolution1.getLimits() + ":"+ rsSolution1.getFitness());
+		RandomSearch rs1 = new RandomSearch(catalog, limits);
+		Solution rsSolution1 = rs1.run(BUDGET);
 		
-		HillClimbing hc2 = new HillClimbing(catalog, 300);
-		Solution hcSolution2 = hc2.run(2000);
-		System.out.println(hcSolution2.getLimits() + ":"+ hcSolution2.getFitness());
-		
-		RandomSearch rs2 = new RandomSearch(catalog, 300);
-		Solution rsSolution2 = rs2.run(2000);
-		System.out.println(rsSolution2.getLimits() + ":"+ rsSolution2.getFitness());
-		
-		HillClimbing hc3 = new HillClimbing(catalog, 400);
-		Solution hcSolution3 = hc3.run(2000);
-		System.out.println(hcSolution3.getLimits() + ":"+ hcSolution3.getFitness());
-		
-		RandomSearch rs3 = new RandomSearch(catalog, 400);
-		Solution rsSolution3 = rs3.run(2000);
-		System.out.println(rsSolution3.getLimits() + ":"+ rsSolution3.getFitness());
+		System.out.println(limits + " - HC: " + hcSolution1.getFitness() + " RS: " + rsSolution1.getFitness());
 	}
 }

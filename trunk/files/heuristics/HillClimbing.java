@@ -16,42 +16,41 @@ public class HillClimbing
 	
 	public Solution run(int fitnessEvaluationBudget)
 	{
-		int neighbor = 0;
-		int changedNeighbor = 0;
-		boolean restartRequired = false;
-		
 		Solution bestSolution = new Solution(catalog, limits);
-		//bestSolution.randomize();
+		bestSolution.randomize();
 		int bestFitness = bestSolution.getFitness();
 				
 		Solution solution = new Solution(catalog, limits);
 		solution = bestSolution.clone();
 		
+		int evaluationCount = 0;
 		int neighborCount = catalog.size();
 		
-		for (int i = 0; i < fitnessEvaluationBudget; i++)
+		while (evaluationCount < fitnessEvaluationBudget)
 		{
-			if (neighbor>=neighborCount) break;
+			boolean restartRequired = true;
 			
-			if (restartRequired) 
+			for (int i = 0; i < neighborCount; i++)
 			{
-				restartRequired = false;
-				neighbor = 0;
-			}
+				boolean currentState = solution.getTestCase(i);
+				solution.setTestCase(i, !currentState);				
 
-			if (changedNeighbor == neighbor) neighbor++; 
-			solution.setTestCase(neighbor, !solution.getTestCase(neighbor));
+				int currentFitness = solution.getFitness();
+				evaluationCount++;
+				
+				if (currentFitness > bestFitness) 
+				{
+					bestFitness = currentFitness;
+					bestSolution = solution.clone();
+					restartRequired = false;
+					break;
+				} 
+				else 
+					solution.setTestCase(i, currentState);
+			}
 			
-			int currentFitness = solution.getFitness();
-			
-			if (currentFitness > bestFitness) 
-			{
-				bestFitness = currentFitness;
-				bestSolution = solution.clone();
-				restartRequired = true;
-				changedNeighbor = neighbor;
-			} else solution.setTestCase(neighbor, !solution.getTestCase(neighbor));
-			neighbor++;
+			if (restartRequired)
+				solution.randomize();
 		}
 		
 		return bestSolution;
